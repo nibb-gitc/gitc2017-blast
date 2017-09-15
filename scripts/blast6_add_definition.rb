@@ -4,7 +4,8 @@ blastdb = ARGV[1] # blastdb
 File.open(inputf).each do |line|
   ary = line.chomp.split(/\t/)
   sid = ary[1]
-  cmd = %Q{blastdbcmd -entry #{sid} -db #{blastdb} -outfmt "%t" }
+  cmd = %Q{blastdbcmd -entry "#{sid}" -db #{blastdb} -outfmt "%t" }
+#  puts cmd
   res = nil
   IO.popen(cmd){|io| res = io.read}
   defi = res.chomp.strip
